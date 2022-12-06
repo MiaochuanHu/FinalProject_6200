@@ -4,6 +4,12 @@
  */
 package ui;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author miaoc
@@ -15,6 +21,8 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
      */
     public SystemAdminJFrame() {
         initComponents();
+        populatetblStudentEnrollment();
+        populatetblTeachersEnrollment();
     }
 
     /**
@@ -31,6 +39,12 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
         lblUser = new javax.swing.JLabel();
         lblType = new javax.swing.JLabel();
         btnExit = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblStudentEnrollment = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblTeacherList = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -61,17 +75,77 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
             }
         });
 
+        tblStudentEnrollment.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Name", "Age(Months)"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tblStudentEnrollment);
+
+        tblTeacherList.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null},
+                {null},
+                {null},
+                {null}
+            },
+            new String [] {
+                "Name"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(tblTeacherList);
+
+        jLabel1.setText("Student Enrollment");
+
+        jLabel2.setText("Teacher");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblUser)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtCurrentUserName, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblType)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(212, 212, 212)
+                        .addComponent(lblUser)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtCurrentUserName, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblType)
+                        .addGap(6, 6, 6)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtCurrentLoginType, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -88,7 +162,15 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
                     .addComponent(txtCurrentLoginType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblType)
                     .addComponent(btnExit))
-                .addContainerGap(271, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(50, 50, 50))
         );
 
         pack();
@@ -144,9 +226,62 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnExit;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblType;
     private javax.swing.JLabel lblUser;
+    private javax.swing.JTable tblStudentEnrollment;
+    private javax.swing.JTable tblTeacherList;
     public static javax.swing.JTextField txtCurrentLoginType;
     public static javax.swing.JTextField txtCurrentUserName;
     // End of variables declaration//GEN-END:variables
+    private void populatetblStudentEnrollment(){
+        DefaultTableModel model = (DefaultTableModel) tblStudentEnrollment.getModel();
+        model.setRowCount(0);
+        
+        String line = "";
+        String splitBy = ",";
+        
+        String root = System.getProperty("user.dir");
+        String FileName="students.csv"; //change the file name here
+        String filePath = root+File.separator+"src"+File.separator+"csvFile"+File.separator+FileName;
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(filePath));
+            while ((line = br.readLine()) != null){
+                String[] user = line.split(splitBy);
+                Object[] row =  new Object[2];
+                row[0]=user[0];
+                row[1]=user[1];
+                model.addRow(row);
+            }
+            br.close();
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+    }
+    private void populatetblTeachersEnrollment(){
+        DefaultTableModel model = (DefaultTableModel) tblTeacherList.getModel();
+        model.setRowCount(0);
+        
+        String line = "";
+        String splitBy = ",";
+        
+        String root = System.getProperty("user.dir");
+        String FileName="teachers.csv"; //change the file name here
+        String filePath = root+File.separator+"src"+File.separator+"csvFile"+File.separator+FileName;
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(filePath));
+            while ((line = br.readLine()) != null){
+                String[] user = line.split(splitBy);
+                Object[] row =  new Object[1];
+                row[0]=user[0];
+                model.addRow(row);
+            }
+            br.close();
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+    }
 }
