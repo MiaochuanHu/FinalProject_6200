@@ -62,7 +62,7 @@ public class LoginJFrame extends javax.swing.JFrame {
             }
         });
 
-        comboUserType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "System Admin", "Guest" }));
+        comboUserType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "System Admin", "Teacher" }));
         comboUserType.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboUserTypeActionPerformed(evt);
@@ -205,9 +205,14 @@ public class LoginJFrame extends javax.swing.JFrame {
         int LoginAllowed = 0;
 
         List<loginUser> loginUserList = new ArrayList<>();
-
+        
+        //Acess the csv file, use this to get file path
+        String root = System.getProperty("user.dir");
+        String FileName="login.csv"; //change the file name here
+        String filePath = root+File.separator+"src"+File.separator+"csvFile"+File.separator+FileName;
+        
         try {
-            BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\miaoc\\Desktop\\HealthManagementSystemDocument\\login.csv"));
+            BufferedReader br = new BufferedReader(new FileReader(filePath));
             while ((line = br.readLine()) != null){
                 String[] user = line.split(splitBy);
                 loginUserList.add(new loginUser(user[0],user[1],user[2]));
@@ -227,9 +232,9 @@ public class LoginJFrame extends javax.swing.JFrame {
                 }
             }
             
-            if (usernameInput.equals("") && passwordInput.equals("") && selectedLoginType.equals("Guest")){
+            if (usernameInput.equals("") && passwordInput.equals("") && selectedLoginType.equals("Teacher")){
                 LoginAllowed = 2;
-                JOptionPane.showMessageDialog(this, "Login as Guest Successful");
+                JOptionPane.showMessageDialog(this, "Login as Teacher Successful");
             }
             
             //Add new panel here
@@ -244,8 +249,8 @@ public class LoginJFrame extends javax.swing.JFrame {
                 this.setVisible(false);
                 this.dispose();
             } else if (LoginAllowed == 2) {
-                GuestJFrame guest =  new GuestJFrame();
-                guest.setVisible(true);
+                TeacherJFrame teacher =  new TeacherJFrame();
+                teacher.setVisible(true);
                 this.setVisible(false);
                 this.dispose();
             }else{
