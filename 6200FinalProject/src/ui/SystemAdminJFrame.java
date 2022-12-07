@@ -54,6 +54,7 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
         txtName = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         txtAge = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -148,6 +149,13 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
 
         jLabel4.setText("Student Age:");
 
+        jButton1.setText("Detail Student Info");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -180,6 +188,7 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(jLabel4)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(txtAge, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(txtName, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(btnAddStudent, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -212,6 +221,8 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
                         .addComponent(txtAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(29, 29, 29)
                         .addComponent(btnAddStudent)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnImmunizationTracker))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -261,6 +272,8 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
         String filePath = root+File.separator+"src"+File.separator+"csvFile"+File.separator+FileName;
         String FileName2="ImmunizationRecord.csv"; //change the file name here
         String filePath2 = root+File.separator+"src"+File.separator+"csvFile"+File.separator+FileName2;
+        String FileName3="studentsDetailedInfo.csv"; //change the file name here
+        String filePath3 = root+File.separator+"src"+File.separator+"csvFile"+File.separator+FileName3;
         
         try {
             BufferedReader br = new BufferedReader(new FileReader(filePath));
@@ -281,9 +294,11 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
             // TODO add your handling code here:
             String csv = filePath;
             String csv2 = filePath2;
+            String csv3 = filePath3;
             
             CSVWriter writer = new CSVWriter(new FileWriter(csv, true));
             CSVWriter writer2 = new CSVWriter(new FileWriter(csv2, true));
+            CSVWriter writer3 = new CSVWriter(new FileWriter(csv3, true));
             
             String[] record = new String[2];
             record[0] = txtName.getText();
@@ -297,12 +312,21 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
             record2[4] = "N";
             record2[5] = "N";
             
-
+            String[] record3 = new String[5];
+            record3[0] = txtName.getText();
+            record3[1] = txtAge.getText();
+            record3[2] = "Unknown";
+            record3[3] = "Unknown";
+            record3[4] = "Unknown";
+           
             writer.writeNext(record,false);
             writer.close();
             
             writer2.writeNext(record2,false);
             writer2.close();
+            
+            writer3.writeNext(record3,false);
+            writer3.close();
             
             txtAge.setText("");
             txtName.setText("");
@@ -315,6 +339,12 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
         
         populatetblStudentEnrollment();
     }//GEN-LAST:event_btnAddStudentActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        DetailStudentInfo dsi = new DetailStudentInfo();
+        dsi.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -355,6 +385,7 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnAddStudent;
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnImmunizationTracker;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
