@@ -12,9 +12,9 @@ public class Student extends Person{
     private double gpa;
     private String parentName;
     private String address;
-    private String phone;
+    private long phone;
 
-    public Student(String name, int age, String parentName, String address, String phone) {
+    public Student(String name, int age, String parentName, String address, long phone) {
         super(name, age);
         this.parentName = parentName;
         this.address = address;
@@ -45,12 +45,14 @@ public class Student extends Person{
         this.address = address;
     }
 
-    public String getPhone() {
+    public long getPhone() {
         return phone;
     }
 
-    public void setPhone(String phone) {
+    public void setPhone(long phone) {
         this.phone = phone;
     }
+
+    
     
 }
