@@ -4,10 +4,13 @@
  */
 package ui;
 
+import com.opencsv.CSVWriter;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -45,6 +48,12 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
         tblTeacherList = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        btnAddStudent = new javax.swing.JButton();
+        btnImmunizationTracker = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        txtName = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        txtAge = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -121,6 +130,24 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
 
         jLabel2.setText("Teacher");
 
+        btnAddStudent.setText("Add Student");
+        btnAddStudent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddStudentActionPerformed(evt);
+            }
+        });
+
+        btnImmunizationTracker.setText("Immunization Tracker");
+        btnImmunizationTracker.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnImmunizationTrackerActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("Student Name:");
+
+        jLabel4.setText("Student Age:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -134,22 +161,29 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
                             .addComponent(jLabel1))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel2)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(212, 212, 212)
                         .addComponent(lblUser)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtCurrentUserName, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
+                        .addComponent(txtCurrentUserName, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblType)
                         .addGap(6, 6, 6)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtCurrentLoginType, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(txtCurrentLoginType, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(txtAge, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(txtName, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(btnAddStudent, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnImmunizationTracker, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -167,9 +201,22 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29)
+                        .addComponent(btnAddStudent)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnImmunizationTracker))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(50, 50, 50))
         );
 
@@ -188,6 +235,86 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_btnExitActionPerformed
+
+    private void btnImmunizationTrackerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImmunizationTrackerActionPerformed
+        // TODO add your handling code here:
+        StudentImmunizationJFrame imu = new StudentImmunizationJFrame();
+        imu.setVisible(true);
+    }//GEN-LAST:event_btnImmunizationTrackerActionPerformed
+
+    private void btnAddStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddStudentActionPerformed
+        // TODO add your handling code here:
+        String line = "";
+        String splitBy = ",";
+        
+        if (txtName.getText().equals("") || txtAge.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Name or age can't be empty");
+            return;
+        }
+        
+        if (txtAge.getText().matches("-?\\d+") == false){
+            JOptionPane.showMessageDialog(this, "Invalid Input");
+            return;
+        }
+        String root = System.getProperty("user.dir");
+        String FileName="students.csv"; //change the file name here
+        String filePath = root+File.separator+"src"+File.separator+"csvFile"+File.separator+FileName;
+        String FileName2="ImmunizationRecord.csv"; //change the file name here
+        String filePath2 = root+File.separator+"src"+File.separator+"csvFile"+File.separator+FileName2;
+        
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(filePath));
+            while ((line = br.readLine()) != null){
+                String[] user = line.split(splitBy);
+                if(txtName.getText().equals(user[0]) ){
+                    JOptionPane.showMessageDialog(this, "Name Already Exist");
+                    txtName.setText("");
+                    txtAge.setText("");
+                    return;
+                }
+            }
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+        
+        try {
+            // TODO add your handling code here:
+            String csv = filePath;
+            String csv2 = filePath2;
+            
+            CSVWriter writer = new CSVWriter(new FileWriter(csv, true));
+            CSVWriter writer2 = new CSVWriter(new FileWriter(csv2, true));
+            
+            String[] record = new String[2];
+            record[0] = txtName.getText();
+            record[1] = txtAge.getText();
+            
+            String[] record2 = new String[6];
+            record2[0] = txtName.getText();
+            record2[1] = "N";
+            record2[2] = "N";
+            record2[3] = "N";
+            record2[4] = "N";
+            record2[5] = "N";
+            
+
+            writer.writeNext(record,false);
+            writer.close();
+            
+            writer2.writeNext(record2,false);
+            writer2.close();
+            
+            txtAge.setText("");
+            txtName.setText("");
+
+            JOptionPane.showMessageDialog(this, "Registeration as Patient Successful");
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        
+        populatetblStudentEnrollment();
+    }//GEN-LAST:event_btnAddStudentActionPerformed
 
     /**
      * @param args the command line arguments
@@ -225,17 +352,23 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAddStudent;
     private javax.swing.JButton btnExit;
+    private javax.swing.JButton btnImmunizationTracker;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblType;
     private javax.swing.JLabel lblUser;
     private javax.swing.JTable tblStudentEnrollment;
     private javax.swing.JTable tblTeacherList;
+    private javax.swing.JTextField txtAge;
     public static javax.swing.JTextField txtCurrentLoginType;
     public static javax.swing.JTextField txtCurrentUserName;
+    private javax.swing.JTextField txtName;
     // End of variables declaration//GEN-END:variables
     private void populatetblStudentEnrollment(){
         DefaultTableModel model = (DefaultTableModel) tblStudentEnrollment.getModel();
