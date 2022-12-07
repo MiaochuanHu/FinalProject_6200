@@ -33,7 +33,7 @@ public class StudentFactory extends PersonFactory
             int age = scanner.nextInt();
             String parentName = scanner.next();
             String address = scanner.next();
-            String phone = scanner.next();
+            long phone = scanner.nextLong();
 
             return new Student(name, age, parentName, address, phone);
         } catch (Exception e)
