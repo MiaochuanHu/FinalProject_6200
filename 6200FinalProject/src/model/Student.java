@@ -11,6 +11,11 @@ package model;
 public class Student extends Person{
     private double gpa;
 
+    public Student(double gpa, int age, String name) {
+        super(age, name);
+        this.gpa = gpa;
+    }
+    
     public double getGpa() {
         return gpa;
     }

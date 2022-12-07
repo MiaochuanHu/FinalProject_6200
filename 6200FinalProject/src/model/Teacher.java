@@ -4,12 +4,24 @@
  */
 package model;
 
+import java.util.List;
+import java.util.ArrayList;
 /**
  *
- * @author yanyanchen
+ * @author gecheng
  */
 public class Teacher extends Person{
     private int credits;
+    private String gender;
+    private ClassRoom classroom;
+    private final List<Student> students;
+    
+    public Teacher(int credits,String gender, int age, String name) {
+        super(age, name);
+        this.credits = credits;
+        this.gender = gender;
+        this.students = new ArrayList<>();
+    }
 
     public int getCredits() {
         return credits;
@@ -18,5 +30,25 @@ public class Teacher extends Person{
     public void setCredits(int credits) {
         this.credits = credits;
     }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public ClassRoom getClassroom() {
+        return classroom;
+    }
+
+    public void setClassroom(ClassRoom classroom) {
+        this.classroom = classroom;
+    }
     
+    
+
+    
+ 
 }
