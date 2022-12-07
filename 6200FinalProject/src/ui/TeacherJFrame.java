@@ -4,9 +4,22 @@
  */
 package ui;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
+
 /**
  *
- * @author miaoc
+ * @author gecheng
  */
 public class TeacherJFrame extends javax.swing.JFrame {
 
@@ -15,6 +28,8 @@ public class TeacherJFrame extends javax.swing.JFrame {
      */
     public TeacherJFrame() {
         initComponents();
+        populatetblTeacher();
+        clear();
     }
 
     /**
@@ -26,21 +41,327 @@ public class TeacherJFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        txtName = new javax.swing.JTextField();
+        lblId2 = new javax.swing.JLabel();
+        lblId1 = new javax.swing.JLabel();
+        txtAge = new javax.swing.JTextField();
+        txtCredits = new javax.swing.JTextField();
+        lblId4 = new javax.swing.JLabel();
+        lblId3 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblTeacher = new javax.swing.JTable();
+        txtSearch = new javax.swing.JTextField();
+        lblSearchContent = new javax.swing.JLabel();
+        rbtnFemale = new javax.swing.JRadioButton();
+        rbtnMale = new javax.swing.JRadioButton();
+        btnClose = new javax.swing.JButton();
+        btnEdit = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setBackground(new java.awt.Color(187, 187, 187));
+
+        jLabel1.setFont(new java.awt.Font("Lucida Sans", 0, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Teacher List");
+
+        lblId2.setBackground(new java.awt.Color(0, 0, 0));
+        lblId2.setForeground(new java.awt.Color(0, 0, 0));
+        lblId2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblId2.setText("GENDER");
+
+        lblId1.setBackground(new java.awt.Color(0, 0, 0));
+        lblId1.setForeground(new java.awt.Color(0, 0, 0));
+        lblId1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblId1.setText("NAME");
+
+        lblId4.setBackground(new java.awt.Color(0, 0, 0));
+        lblId4.setForeground(new java.awt.Color(0, 0, 0));
+        lblId4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblId4.setText("CREDITS");
+
+        lblId3.setBackground(new java.awt.Color(0, 0, 0));
+        lblId3.setForeground(new java.awt.Color(0, 0, 0));
+        lblId3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblId3.setText("AGE");
+
+        tblTeacher.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "NAME", "GENDER", "AGE", "CREDITS"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblTeacher.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblTeacherMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblTeacher);
+
+        txtSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSearchActionPerformed(evt);
+            }
+        });
+        txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtSearchKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtSearchKeyReleased(evt);
+            }
+        });
+
+        lblSearchContent.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
+        lblSearchContent.setForeground(new java.awt.Color(0, 0, 0));
+        lblSearchContent.setText("Search Content:");
+
+        buttonGroup1.add(rbtnFemale);
+        rbtnFemale.setForeground(new java.awt.Color(0, 0, 0));
+        rbtnFemale.setText("Female");
+
+        buttonGroup1.add(rbtnMale);
+        rbtnMale.setForeground(new java.awt.Color(0, 0, 0));
+        rbtnMale.setText("Male");
+        rbtnMale.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtnMaleActionPerformed(evt);
+            }
+        });
+
+        btnClose.setText("Close");
+        btnClose.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCloseActionPerformed(evt);
+            }
+        });
+
+        btnEdit.setText("Edit");
+        btnEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 752, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnClose, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(163, 163, 163)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(lblId4, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtCredits, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(lblId3, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtAge, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(lblId2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(rbtnFemale)
+                                .addGap(35, 35, 35)
+                                .addComponent(rbtnMale))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblId1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblSearchContent))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnClose)
+                .addGap(3, 3, 3)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblSearchContent)
+                    .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEdit))
+                .addGap(47, 47, 47)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblId1))
+                .addGap(14, 14, 14)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblId2)
+                    .addComponent(rbtnFemale)
+                    .addComponent(rbtnMale))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblId3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtCredits, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblId4))
+                .addContainerGap(52, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void clear() {
+
+        txtName.setText("");
+        buttonGroup1.clearSelection();
+        txtAge.setText("");
+        txtCredits.setText("");
+
+    }
+
+    private void tblTeacherMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTeacherMouseClicked
+        // TODO add your handling code here:
+        DefaultTableModel tblModel = (DefaultTableModel) tblTeacher.getModel();
+
+        //Set data to text field when raw is selected
+        String tblName = tblModel.getValueAt(tblTeacher.getSelectedRow(), 0).toString();
+        String tblGender = tblModel.getValueAt(tblTeacher.getSelectedRow(), 1).toString();
+        String tblAge = tblModel.getValueAt(tblTeacher.getSelectedRow(), 2).toString();
+        String tblCredits = tblModel.getValueAt(tblTeacher.getSelectedRow(), 3).toString();
+
+        //Set to text field
+        txtName.setText(tblName);
+        if (tblGender.equals("Female")) {
+            rbtnFemale.setSelected(true);
+            rbtnMale.setSelected(false);
+        } else if (tblGender.equals("Male")) {
+            rbtnMale.setSelected(true);
+            rbtnFemale.setSelected(false);
+        } else {
+            JOptionPane.showMessageDialog(this, "Please Correct Gender Message!");
+        }
+        txtAge.setText(tblAge);
+        txtCredits.setText(tblCredits);
+    }//GEN-LAST:event_tblTeacherMouseClicked
+
+    private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSearchActionPerformed
+
+    private void txtSearchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyPressed
+        // TODO add your handling code here:
+        //Get tblList first
+        DefaultTableModel model = (DefaultTableModel) tblTeacher.getModel();
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(model);
+        tblTeacher.setRowSorter(tr);
+        tr.setRowFilter(RowFilter.regexFilter(txtSearch.getText().trim()));
+    }//GEN-LAST:event_txtSearchKeyPressed
+
+    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSearchKeyReleased
+
+    private void rbtnMaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnMaleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rbtnMaleActionPerformed
+
+    private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        this.dispose();
+    }//GEN-LAST:event_btnCloseActionPerformed
+
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
+        // TODO add your handling code here:
+        int selectedRowIndex = tblTeacher.getSelectedRow();
+        if (selectedRowIndex < 0){
+            JOptionPane.showMessageDialog(this, "Select a teacher to edit");
+            return;
+        }
+        DefaultTableModel model = (DefaultTableModel) tblTeacher.getModel();
+        String name = txtName.getText();
+        String gender = null;
+        if (rbtnFemale.isSelected()) {
+            gender = "Female";
+        }
+        if (rbtnMale.isSelected()) {
+            gender = "Male";
+        }
+        String age = txtAge.getText();
+        String credits = txtCredits.getText();
+
+        if (name.equals("") || age.equals("")|| credits.equals("")){
+            JOptionPane.showMessageDialog(this, "name, gender, age, or credits can't be empty");
+            return;
+        }
+        String root = System.getProperty("user.dir");
+        String FileName="teachers.csv"; //change the file name here
+        String fileToUpdate = root+File.separator+"src"+File.separator+"csvFile"+File.separator+FileName;
+
+        String data = name + "," + gender + "," + age + "," + credits ;
+        try{
+            Path path = Paths.get(fileToUpdate);
+            List<String> lines = Files.readAllLines(path);
+            lines.set(selectedRowIndex, data);
+            Files.write(path, lines);
+            JOptionPane.showMessageDialog(this, "Info Edited");
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        populatetblTeacher();
+    }//GEN-LAST:event_btnEditActionPerformed
 
     /**
      * @param args the command line arguments
@@ -69,6 +390,12 @@ public class TeacherJFrame extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -79,5 +406,53 @@ public class TeacherJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnClose;
+    private javax.swing.JButton btnEdit;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblId1;
+    private javax.swing.JLabel lblId2;
+    private javax.swing.JLabel lblId3;
+    private javax.swing.JLabel lblId4;
+    private javax.swing.JLabel lblSearchContent;
+    private javax.swing.JRadioButton rbtnFemale;
+    private javax.swing.JRadioButton rbtnMale;
+    private javax.swing.JTable tblTeacher;
+    private javax.swing.JTextField txtAge;
+    private javax.swing.JTextField txtCredits;
+    private javax.swing.JTextField txtName;
+    private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
+
+    private void populatetblTeacher() {
+        DefaultTableModel model = (DefaultTableModel) tblTeacher.getModel();
+        model.setRowCount(0);
+
+        String line = "";
+        String splitBy = ",";
+
+        String root = System.getProperty("user.dir");
+        String FileName = "teachers.csv"; //change the file name here
+        String filePath = root + File.separator + "src" + File.separator + "csvFile" + File.separator + FileName;
+
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(filePath));
+            while ((line = br.readLine()) != null) {
+                String[] user = line.split(splitBy);
+                Object[] row = new Object[4];
+                row[0] = user[0];
+                row[1] = user[1];
+                row[2] = user[2];
+                row[3] = user[3];
+
+                model.addRow(row);
+            }
+            br.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
