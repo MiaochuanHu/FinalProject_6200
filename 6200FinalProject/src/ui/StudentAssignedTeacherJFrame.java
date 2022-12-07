@@ -231,6 +231,7 @@ public class StudentAssignedTeacherJFrame extends javax.swing.JFrame {
         String root = System.getProperty("user.dir");
         String FileName="StudentAssign2Teacher.csv"; //change the file name here
         String filePath = root+File.separator+"src"+File.separator+"csvFile"+File.separator+FileName;
+        int studentAge=Integer.parseInt(lblStudentAge.getText());
         
         try {
             BufferedReader br = new BufferedReader(new FileReader(filePath));
@@ -242,11 +243,48 @@ public class StudentAssignedTeacherJFrame extends javax.swing.JFrame {
                     lblStudentAge.setText("--");
                     lblAssignedTeacher.setText("--");
                     return;
+                }else if(checkRatio(lblAssignedTeacher.getText(),lblStudentAge.getText())==false && studentAge>=6 && studentAge<=12){
+                    JOptionPane.showMessageDialog(this, "The teacher's 6-12 months student allocation has reached the upper limit");
+                    lblStudentName.setText("--");
+                    lblStudentAge.setText("--");
+                    lblAssignedTeacher.setText("--");
+                    return;
+                }else if(checkRatio(lblAssignedTeacher.getText(),lblStudentAge.getText())==false && studentAge>=13 && studentAge<=24){
+                    JOptionPane.showMessageDialog(this, "The teacher's 13-24 months student allocation has reached the upper limit");
+                    lblStudentName.setText("--");
+                    lblStudentAge.setText("--");
+                    lblAssignedTeacher.setText("--");
+                    return;
+                }else if(checkRatio(lblAssignedTeacher.getText(),lblStudentAge.getText())==false && studentAge>=25 && studentAge<=35){
+                    JOptionPane.showMessageDialog(this, "The teacher's 25-35 months student allocation has reached the upper limit");
+                    lblStudentName.setText("--");
+                    lblStudentAge.setText("--");
+                    lblAssignedTeacher.setText("--");
+                    return;
+                }else if(checkRatio(lblAssignedTeacher.getText(),lblStudentAge.getText())==false && studentAge>=36 && studentAge<=47){
+                    JOptionPane.showMessageDialog(this, "The teacher's 36-47 months student allocation has reached the upper limit");
+                    lblStudentName.setText("--");
+                    lblStudentAge.setText("--");
+                    lblAssignedTeacher.setText("--");
+                    return;
+                }else if(checkRatio(lblAssignedTeacher.getText(),lblStudentAge.getText())==false && studentAge>=48 && studentAge<=59){
+                    JOptionPane.showMessageDialog(this, "The teacher's 48-59 months student allocation has reached the upper limit");
+                    lblStudentName.setText("--");
+                    lblStudentAge.setText("--");
+                    lblAssignedTeacher.setText("--");
+                    return;
+                }else if(checkRatio(lblAssignedTeacher.getText(),lblStudentAge.getText())==false && studentAge>=60){
+                    JOptionPane.showMessageDialog(this, "The teacher's 60 months student allocation has reached the upper limit");
+                    lblStudentName.setText("--");
+                    lblStudentAge.setText("--");
+                    lblAssignedTeacher.setText("--");
+                    return;
                 }
             }
         }catch(IOException e){
             e.printStackTrace();
         }
+        
         
         try {
             // TODO add your handling code here:
@@ -267,6 +305,7 @@ public class StudentAssignedTeacherJFrame extends javax.swing.JFrame {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+        
         
         
         
@@ -380,6 +419,88 @@ public class StudentAssignedTeacherJFrame extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }
+    
+    
+    
+     private boolean checkRatio(String teacherName,String studentAge){
+        boolean flag=true;
+        int studengAge1 = Integer.parseInt(studentAge);
+        
+        String line = "";
+        String splitBy = ",";
+    
+        String root = System.getProperty("user.dir");
+        String FileName="StudentAssign2Teacher.csv"; //change the file name here
+        String filePath = root+File.separator+"src"+File.separator+"csvFile"+File.separator+FileName;
+        
+        int count6_12=0;
+        int count13_24=0;
+        int count25_35=0;
+        int count36_47=0;
+        int count48_59=0;
+        int count60=0;
+        
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(filePath));
+            while ((line = br.readLine()) != null){
+                String[] assign = line.split(splitBy);
+                
+                //Count the number of students in each age group of the teacher
+                int age=Integer.parseInt(assign[1]);
+                if(teacherName.equals(assign[2])&& age<=12 && age>=6){
+                    count6_12++;
+                }
+                if(teacherName.equals(assign[2])&& age<=13 && age>=24){
+                    count13_24++;
+                    
+                }
+                if(teacherName.equals(assign[2])&& age<=25 && age>=35){
+                    count25_35++;
+                    
+                }
+                if(teacherName.equals(assign[2])&& age<=36 && age>=47){
+                    count36_47++;
+                    
+                }
+                if(teacherName.equals(assign[2])&& age<=48 && age>=59){
+                    count48_59++;
+                    
+                }
+                if(teacherName.equals(assign[2])&& age>=60){
+                    count60++;
+                }
+            }
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+        //If the upper limit of the age group is not full, then can continue to assign this teacher to student
+        if(studengAge1<=12 && studengAge1>=6){
+            if(count6_12>=4){
+                flag=false;
+            }
+        }else if(studengAge1<=13 && studengAge1>=24){
+            if(count13_24>=5){
+                flag=false;
+            }
+        }else if(studengAge1<=25 && studengAge1>=35){
+            if(count25_35>=6){
+                flag=false;
+            }
+        }else if(studengAge1<=36 && studengAge1>=47){
+            if(count36_47>=8){
+                flag=false;
+            }
+        }else if(studengAge1<=48 && studengAge1>=59){
+            if(count48_59>=12){
+                flag=false;
+            }
+        }else if(studengAge1>=60){
+            if(count60>=15){
+                flag=false;
+            }       
+        }
+        return flag;
+     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAssign;
