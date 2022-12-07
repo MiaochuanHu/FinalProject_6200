@@ -10,10 +10,15 @@ package model;
  */
 public class Student extends Person{
     private double gpa;
+    private String parentName;
+    private String address;
+    private String phone;
 
-    public Student(double gpa, int age, String name) {
-        super(age, name);
-        this.gpa = gpa;
+    public Student(String name, int age, String parentName, String address, String phone) {
+        super(name, age);
+        this.parentName = parentName;
+        this.address = address;
+        this.phone = phone;
     }
     
     public double getGpa() {
@@ -22,6 +27,30 @@ public class Student extends Person{
 
     public void setGpa(double gpa) {
         this.gpa = gpa;
+    }
+
+    public String getParentName() {
+        return parentName;
+    }
+
+    public void setParentName(String parentName) {
+        this.parentName = parentName;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
     
 }

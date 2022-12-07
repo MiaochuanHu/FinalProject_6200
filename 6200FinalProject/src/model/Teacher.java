@@ -11,13 +11,14 @@ import java.util.ArrayList;
  * @author gecheng
  */
 public class Teacher extends Person{
-    private int credits;
+    
     private String gender;
+    private int credits;
     private ClassRoom classroom;
     private final List<Student> students;
     
-    public Teacher(int credits,String gender, int age, String name) {
-        super(age, name);
+    public Teacher(String name,String gender, int age, int credits) {
+        super(name, age);
         this.credits = credits;
         this.gender = gender;
         this.students = new ArrayList<>();
