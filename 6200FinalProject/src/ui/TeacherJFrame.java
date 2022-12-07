@@ -59,6 +59,7 @@ public class TeacherJFrame extends javax.swing.JFrame {
         rbtnMale = new javax.swing.JRadioButton();
         btnClose = new javax.swing.JButton();
         btnEdit = new javax.swing.JButton();
+        txtCurrentLoginType = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -167,6 +168,14 @@ public class TeacherJFrame extends javax.swing.JFrame {
             }
         });
 
+        txtCurrentLoginType.setEditable(false);
+        txtCurrentLoginType.setBackground(new java.awt.Color(204, 204, 204));
+        txtCurrentLoginType.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCurrentLoginTypeActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -183,6 +192,8 @@ public class TeacherJFrame extends javax.swing.JFrame {
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtCurrentLoginType, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnClose, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(163, 163, 163)
@@ -216,7 +227,9 @@ public class TeacherJFrame extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnClose)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnClose)
+                    .addComponent(txtCurrentLoginType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(3, 3, 3)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
@@ -271,31 +284,6 @@ public class TeacherJFrame extends javax.swing.JFrame {
 
     }
 
-    private void tblTeacherMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTeacherMouseClicked
-        // TODO add your handling code here:
-        DefaultTableModel tblModel = (DefaultTableModel) tblTeacher.getModel();
-
-        //Set data to text field when raw is selected
-        String tblName = tblModel.getValueAt(tblTeacher.getSelectedRow(), 0).toString();
-        String tblGender = tblModel.getValueAt(tblTeacher.getSelectedRow(), 1).toString();
-        String tblAge = tblModel.getValueAt(tblTeacher.getSelectedRow(), 2).toString();
-        String tblCredits = tblModel.getValueAt(tblTeacher.getSelectedRow(), 3).toString();
-
-        //Set to text field
-        txtName.setText(tblName);
-        if (tblGender.equals("Female")) {
-            rbtnFemale.setSelected(true);
-            rbtnMale.setSelected(false);
-        } else if (tblGender.equals("Male")) {
-            rbtnMale.setSelected(true);
-            rbtnFemale.setSelected(false);
-        } else {
-            JOptionPane.showMessageDialog(this, "Please Correct Gender Message!");
-        }
-        txtAge.setText(tblAge);
-        txtCredits.setText(tblCredits);
-    }//GEN-LAST:event_tblTeacherMouseClicked
-
     private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSearchActionPerformed
@@ -347,7 +335,7 @@ public class TeacherJFrame extends javax.swing.JFrame {
             return;
         }
         String root = System.getProperty("user.dir");
-        String FileName="teachers.csv"; //change the file name here
+        String FileName="teachersDetailed.csv"; //change the file name here
         String fileToUpdate = root+File.separator+"src"+File.separator+"csvFile"+File.separator+FileName;
 
         String data = name + "," + gender + "," + age + "," + credits ;
@@ -362,6 +350,35 @@ public class TeacherJFrame extends javax.swing.JFrame {
         }
         populatetblTeacher();
     }//GEN-LAST:event_btnEditActionPerformed
+
+    private void txtCurrentLoginTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCurrentLoginTypeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCurrentLoginTypeActionPerformed
+
+    private void tblTeacherMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTeacherMouseClicked
+        // TODO add your handling code here:
+        DefaultTableModel tblModel = (DefaultTableModel) tblTeacher.getModel();
+
+        //Set data to text field when raw is selected
+        String tblName = tblModel.getValueAt(tblTeacher.getSelectedRow(), 0).toString();
+        String tblGender = tblModel.getValueAt(tblTeacher.getSelectedRow(), 1).toString();
+        String tblAge = tblModel.getValueAt(tblTeacher.getSelectedRow(), 2).toString();
+        String tblCredits = tblModel.getValueAt(tblTeacher.getSelectedRow(), 3).toString();
+
+        //Set to text field
+        txtName.setText(tblName);
+        if (tblGender.equals("Female")) {
+            rbtnFemale.setSelected(true);
+            rbtnMale.setSelected(false);
+        } else if (tblGender.equals("Male")) {
+            rbtnMale.setSelected(true);
+            rbtnFemale.setSelected(false);
+        } else {
+            JOptionPane.showMessageDialog(this, "Please Correct Gender Message!");
+        }
+        txtAge.setText(tblAge);
+        txtCredits.setText(tblCredits);
+    }//GEN-LAST:event_tblTeacherMouseClicked
 
     /**
      * @param args the command line arguments
@@ -422,6 +439,7 @@ public class TeacherJFrame extends javax.swing.JFrame {
     private javax.swing.JTable tblTeacher;
     private javax.swing.JTextField txtAge;
     private javax.swing.JTextField txtCredits;
+    public static javax.swing.JTextField txtCurrentLoginType;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
@@ -434,7 +452,7 @@ public class TeacherJFrame extends javax.swing.JFrame {
         String splitBy = ",";
 
         String root = System.getProperty("user.dir");
-        String FileName = "teachers.csv"; //change the file name here
+        String FileName = "teachersDetailed.csv"; //change the file name here
         String filePath = root + File.separator + "src" + File.separator + "csvFile" + File.separator + FileName;
 
         try {

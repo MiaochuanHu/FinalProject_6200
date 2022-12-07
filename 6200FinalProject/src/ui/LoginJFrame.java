@@ -248,7 +248,17 @@ public class LoginJFrame extends javax.swing.JFrame {
                 systemadminframe.setVisible(true);
                 this.setVisible(false);
                 this.dispose();
-            } else if (LoginAllowed == 2) {
+            
+            } else if (LoginAllowed == 1 && selectedLoginType.equals("Teacher")) {
+                TeacherJFrame tec = new TeacherJFrame();
+
+                tec.txtCurrentLoginType.setText(selectedLoginType);
+                tec.setVisible(true);
+                this.setVisible(false);
+                this.dispose();
+            
+            }
+            else if (LoginAllowed == 2) {
                 TeacherJFrame teacher =  new TeacherJFrame();
                 teacher.setVisible(true);
                 this.setVisible(false);
