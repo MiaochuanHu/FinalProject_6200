@@ -4,18 +4,18 @@
  */
 package model;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.ArrayList;
-/**
- *
- * @author gecheng
- */
+
 public class Teacher extends Person{
     
     private String gender;
     private int credits;
     private ClassRoom classroom;
     private final List<Student> students;
+    private LocalDate reviewDate;
+    
     
     public Teacher(String name,String gender, int age, int credits) {
         super(name, age);
@@ -46,6 +46,14 @@ public class Teacher extends Person{
 
     public void setClassroom(ClassRoom classroom) {
         this.classroom = classroom;
+    }
+
+    public LocalDate getReviewDate() {
+        return reviewDate;
+    }
+
+    public void setReviewDate(LocalDate reviewDate) {
+        this.reviewDate = reviewDate;
     }
     
     

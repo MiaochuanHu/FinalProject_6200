@@ -9,7 +9,7 @@ package model;
  * @author miaoc
  */
 //This is Person class in my program, I named it as loginUser
-public class loginUser {
+public class LoginUser {
     private String username;
     private String password;
     private String logintype;
@@ -38,13 +38,13 @@ public class loginUser {
         this.logintype = logintype;
     }
 
-    public loginUser(String username, String password, String logintype) {
+    public LoginUser(String username, String password, String logintype) {
         this.username = username;
         this.password = password;
         this.logintype = logintype;
     }
     
-    public loginUser(){
+    public LoginUser(){
         
     }
     

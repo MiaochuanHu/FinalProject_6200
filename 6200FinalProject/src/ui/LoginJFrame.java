@@ -8,7 +8,7 @@ package ui;
 import java.io.*;
 import java.util.*;
 import javax.swing.JOptionPane;
-import model.loginUser;
+import model.LoginUser;
 
 /**
  *
@@ -204,7 +204,7 @@ public class LoginJFrame extends javax.swing.JFrame {
         int LoginFlag = 0;
         int LoginAllowed = 0;
 
-        List<loginUser> loginUserList = new ArrayList<>();
+        List<LoginUser> loginUserList = new ArrayList<>();
         
         //Acess the csv file, use this to get file path
         String root = System.getProperty("user.dir");
@@ -215,7 +215,7 @@ public class LoginJFrame extends javax.swing.JFrame {
             BufferedReader br = new BufferedReader(new FileReader(filePath));
             while ((line = br.readLine()) != null){
                 String[] user = line.split(splitBy);
-                loginUserList.add(new loginUser(user[0],user[1],user[2]));
+                loginUserList.add(new LoginUser(user[0],user[1],user[2]));
                 if(usernameInput.equals(user[0]) & passwordInput.equals(user[1]) & selectedLoginType.equals(user[2])){
                     //JOptionPane.showMessageDialog(this, "Login Successful");
                     LoginAllowed = 1;
@@ -225,7 +225,7 @@ public class LoginJFrame extends javax.swing.JFrame {
                 }
             }
 
-            for (loginUser a : loginUserList){
+            for (LoginUser a : loginUserList){
                 if (usernameInput.equals(a.getUsername()) & passwordInput.equals(a.getPassword()) & selectedLoginType.equals(a.getLogintype())){
                     LoginFlag = 1;
                     JOptionPane.showMessageDialog(this, "Info Matched\nLogin successful");
