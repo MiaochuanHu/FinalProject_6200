@@ -9,14 +9,14 @@ package model;
  * @author miaoc
  */
 public class ImmunizationRecord {
-    private String StudentName;
+    private Student StudentName;
     private String ChickenpoxStatus;
     private String PneumococcalStatus;
     private String MMRStatus;
     private String PolioStatus;
     private String RotavirusStatus; 
 
-    public ImmunizationRecord(String StudentName, String ChickenpoxStatus, String PneumococcalStatus, String MMRStatus, String PolioStatus, String RotavirusStatus) {
+    public ImmunizationRecord(Student StudentName, String ChickenpoxStatus, String PneumococcalStatus, String MMRStatus, String PolioStatus, String RotavirusStatus) {
         this.StudentName = StudentName;
         this.ChickenpoxStatus = ChickenpoxStatus;
         this.PneumococcalStatus = PneumococcalStatus;
@@ -25,11 +25,11 @@ public class ImmunizationRecord {
         this.RotavirusStatus = RotavirusStatus;
     }
     
-    public String getStudentName() {
+    public Student getStudentName() {
         return StudentName;
     }
 
-    public void setStudentName(String StudentName) {
+    public void setStudentName(Student StudentName) {
         this.StudentName = StudentName;
     }
 

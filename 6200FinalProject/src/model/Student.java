@@ -16,6 +16,7 @@ public class Student extends Person{
     private LocalDate registrationDate;
     private Teacher assignedTeacher;
     private List<ImmunizationRecord> immunizations;
+    private ClassRoom classroom;
 
     public Student(String name, int age, String parentName, String address, long phone) {
         super(name, age);
@@ -81,6 +82,12 @@ public class Student extends Person{
         this.immunizations = immunizations;
     }
 
-    
-    
+    public ClassRoom getClassroom() {
+        return classroom;
+    }
+
+    public void setClassroom(ClassRoom classroom) {
+        this.classroom = classroom;
+    }
+
 }
