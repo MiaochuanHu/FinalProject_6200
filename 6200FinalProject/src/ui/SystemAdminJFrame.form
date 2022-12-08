@@ -65,6 +65,7 @@
                                   <Component id="btnRegistrationChecker" alignment="0" max="32767" attributes="0"/>
                                   <Component id="btnRegistrationChecker1" alignment="0" max="32767" attributes="0"/>
                                   <Component id="jButton2" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="btnClassroom" alignment="1" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -123,7 +124,9 @@
                       <Component id="jScrollPane2" alignment="1" min="-2" pref="333" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="btnClassroom" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -259,6 +262,12 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnAddStudent">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="cc" green="cc" red="cc" type="rgb"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="0" red="0" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Add Student"/>
       </Properties>
       <Events>
@@ -335,6 +344,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnClassroom">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Classroom"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnClassroomActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

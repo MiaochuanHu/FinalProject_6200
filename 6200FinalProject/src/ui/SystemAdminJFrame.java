@@ -60,6 +60,7 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
         btnRegistrationChecker = new javax.swing.JButton();
         btnRegistrationChecker1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        btnClassroom = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -136,6 +137,8 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
 
         jLabel2.setText("Teacher");
 
+        btnAddStudent.setBackground(new java.awt.Color(204, 204, 204));
+        btnAddStudent.setForeground(new java.awt.Color(0, 0, 0));
         btnAddStudent.setText("Add Student");
         btnAddStudent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -186,6 +189,13 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
             }
         });
 
+        btnClassroom.setText("Classroom");
+        btnClassroom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClassroomActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -228,7 +238,8 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
                                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btnRegistrationChecker, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(btnRegistrationChecker1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnClassroom, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addGap(12, 12, 12)))
                 .addContainerGap())
         );
@@ -275,7 +286,9 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(50, 50, 50))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnClassroom)
+                .addGap(21, 21, 21))
         );
 
         pack();
@@ -412,6 +425,12 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
         ct.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void btnClassroomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClassroomActionPerformed
+        // TODO add your handling code here:
+        ClassroomJFrame cls = new ClassroomJFrame();
+        cls.setVisible(true);
+    }//GEN-LAST:event_btnClassroomActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -449,6 +468,7 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddStudent;
+    private javax.swing.JButton btnClassroom;
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnImmunizationTracker;
     private javax.swing.JButton btnRegistrationChecker;

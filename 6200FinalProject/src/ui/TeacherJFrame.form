@@ -102,14 +102,13 @@
                               </Group>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jButton1" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="btnImmunizationTracker" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="btnRegistrationChecker" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jButton2" alignment="1" min="-2" pref="154" max="-2" attributes="0"/>
-                              </Group>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jButton1" alignment="0" max="32767" attributes="0"/>
+                              <Component id="btnImmunizationTracker" alignment="0" max="32767" attributes="0"/>
+                              <Component id="btnRegistrationChecker" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jButton2" alignment="0" max="32767" attributes="0"/>
                               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnClassroom" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                       </Group>
@@ -173,7 +172,9 @@
                           <Component id="btnImmunizationTracker" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="52" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="btnClassroom" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="23" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -408,6 +409,14 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Operation Area"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnClassroom">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Classroom"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnClassroomActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
