@@ -1,4 +1,4 @@
-# FinalProject_6200  
+# 6200 Final Project 
 ## Daycare  
 ### Team Members   
 Yanyan Chen(002799697)  
@@ -8,6 +8,12 @@ Ge Cheng (002749766)
 Miaochuan Hu(002922156)  
 Mingxia Li(002765530)  
 Chen Ye(002951477)  
+
+###Team presentation
+https://northeastern-my.sharepoint.com/:v:/g/personal/hu_miao_northeastern_edu/EauccaflEi1NoheuvyIpfVoBxynDIRPJF3rM-tP5tvNjoA?e=iwcCbF
+
+###PowerPoiint presentation
+https://northeastern-my.sharepoint.com/:p:/g/personal/hu_miao_northeastern_edu/Ea0ighmbvj9GnFn6bNGorvEBEuvRoPnYiDG28JrKQ--lew?e=pjddcN
 
 ### Introduction  
 The daycare manage system is designed to helps administration identify and manage students in institution. Mainly use Java, read files from CSV to save data. Adopt Java Swing to interact with users.
