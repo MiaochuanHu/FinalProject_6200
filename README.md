@@ -10,7 +10,7 @@ Mingxia Li(002765530)
 Chen Ye(002951477)  
 
 ###Team presentation
-https://northeastern-my.sharepoint.com/:v:/g/personal/hu_miao_northeastern_edu/EauccaflEi1NoheuvyIpfVoBxynDIRPJF3rM-tP5tvNjoA?e=iwcCbF
+https://northeastern-my.sharepoint.com/:v:/g/personal/hu_miao_northeastern_edu/EdY_X-DkDY1Is39NG5cZ9a0BoEy8Yi_OiU15AAMoNpFelQ?e=gMpZIS
 
 ###PowerPoiint presentation
 https://northeastern-my.sharepoint.com/:p:/g/personal/hu_miao_northeastern_edu/Ea0ighmbvj9GnFn6bNGorvEBEuvRoPnYiDG28JrKQ--lew?e=pjddcN
